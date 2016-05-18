@@ -5,20 +5,24 @@
 
 import re
 
-testString = "Four score and seven years ago our congratulations fathers brought forth upon this continent a new nation, conceived in liberty and dedicated to the proposition that all men are created equal"
+testString = "Four score and seven years ago our fathers brought forth upon this continent a new nation, conceived in liberty and dedicated to the proposition that all men are created equal"
 remainingString=testString+" " #added a space to the end to ensure there's a final space
-currentLine = ""
-LINE_LENGTH = 13
+currentLine = "" #this is the variable we are going to use to keep track of what we are going to put on the current line
+LINE_LENGTH = 13 #The requirements said each line should have less than 13 characters, but in case that ever changes,
+# this variable controls this constant for easy configuration.
 
 #helper methods start here.
-def nextSpaceDistance(inputString):
+def nextSpaceDistance(inputString): #this method will find the first instance of the space character and return the
+    # position of that character. please note that character indexes start at 0, so you may need to make some
+    # adjustments if counting characters.
     index=inputString.find(' ')
     return index
 def flushCurrentLine(): #this helper method will reduce duplicate code by pulling common functionality into one function.
     # this makes the code easier to maintain since you only need to make changes in one place to affect all three places
-    #  that this function gets used
-    global remainingString #needs to be global in order to operate on the parent variable. I could pass it in as a variable as an alternative.
-    global currentLine
+    # that this function gets used
+    global remainingString #needs to be global in order to operate on the parent variable. I could pass it in as a
+    global currentLine # variable as an alternative. but this way seems close to how private methods work on class
+    # variables in java classes
     print currentLine #flushes out the current line to the console
     currentLine = "" #clears out the current line variable. it's global, so we don't need to worry about scope.
     if remainingString.startswith(" "): #we need to remove any leading spaces in the remaining string, since we don't
